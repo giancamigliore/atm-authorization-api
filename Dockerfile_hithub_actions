@@ -1,0 +1,68 @@
+# Stage 1: Build the application
+FROM amazoncorretto:23.0.1-alpine AS build
+
+# Set the working directory inside the build container
+WORKDIR /app
+
+# Set the timezone
+ENV TZ=America/Asuncion
+
+# Install tzdata and dependencies
+RUN yum install -y tzdata && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+    echo $TZ > /etc/timezone
+
+# Install curl, tar, and gzip to download and install Maven manually
+RUN yum install -y curl tar gzip && \
+    curl -L https://archive.apache.org/dist/maven/maven-3/3.8.7/binaries/apache-maven-3.8.7-bin.tar.gz -o apache-maven-3.8.7-bin.tar.gz && \
+    tar -xvzf apache-maven-3.8.7-bin.tar.gz -C /opt && \
+    ln -s /opt/apache-maven-3.8.7/bin/mvn /usr/bin/mvn && \
+    rm apache-maven-3.8.7-bin.tar.gz
+
+# Verify Maven version
+RUN mvn -version
+
+# Copy the source code into the container
+COPY . .
+
+# Build the Maven project
+RUN mvn clean package -DskipTests
+
+# Stage 2: Create a lightweight runtime environment
+FROM amazoncorretto:23.0.1-alpine
+
+# Set the working directory in the runtime container
+WORKDIR /app
+
+# Set the timezone
+ENV TZ=America/Asuncion
+
+# Install tzdata for the correct timezone
+RUN apk add --no-cache tzdata && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+    echo $TZ > /etc/timezone
+
+# Create a non-root user and group
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+# Copy the built JAR file from the build stage and rename it to app.jar
+COPY --from=build /app/target/*.jar /app/app.jar
+
+# Setup newrelic
+ADD https://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic.jar /app/newrelic.jar
+ADD newrelic.yml .
+
+# Change ownership of the JAR file to the non-root user
+RUN chown -R appuser:appgroup /app
+
+# Switch to the non-root user
+USER appuser
+
+
+# Expose port 8080
+EXPOSE 8080
+#EXPOSE 39222
+# Define the entry point to run the application
+ENTRYPOINT ["java", \
+    "-javaagent:/app/newrelic.jar", \
+    "-jar", "/app/app.jar"]
