@@ -97,9 +97,15 @@ public class UserServiceTest {
         user.setEnabled(true);
         user.setId(1l);
         List<Role> roles = new ArrayList<Role>();
-        roles.add(new Role(1l,"ROLE_ADMIN"));
+        Role role = new Role();
+        role.setId(1l);
+        role.setName("ROLE_ADMIN");
+        if(role.getId()>0) {
+            roles.add(role);
+        }
         roles.add(new Role(2l,"ROLE_USER"));
         user.setRoles(roles);
+        System.out.println(user.getId());
         when(dao.findByUsername(username)).thenReturn(user);
 
         //WHEN

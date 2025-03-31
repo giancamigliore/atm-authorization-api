@@ -72,7 +72,7 @@ public class AuthorizationController {
                     )
             }
     )
-    @PostMapping("/processAtmTransaction")
+    @PostMapping("/v1/processAtmTransaction")
     @SecurityRequirement(name = "Bearer Authentication")
     @Secured({"ROLE_USER","ROLE_ADMIN"})
     public ResponseEntity<ResponseAuthorization> processAtmTransaction(

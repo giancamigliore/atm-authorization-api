@@ -3,8 +3,7 @@ package com.itti.digital.atm.atm_authorization_api.models.authentication;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.constraints.NotBlank;
-import java.util.List;
-import java.util.Map;
+
 
 public class JWTPayload {
 

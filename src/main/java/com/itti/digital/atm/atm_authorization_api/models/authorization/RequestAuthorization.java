@@ -3,6 +3,8 @@ package com.itti.digital.atm.atm_authorization_api.models.authorization;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -114,18 +116,12 @@ public class RequestAuthorization {
     private String transactionId;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)//docum
-    @Schema(description = "gf1", example = "generic field 1")
-    private String gf1;
+    @Schema(description = "genericFieldList", example = "generic fields list")
+    private List<Map<String,String>> genericFieldList;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)//docum
-    @Schema(description = "gf2", example = "generic field 2")
-    private String gf2;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)//docum
-    @Schema(description = "gf3", example = "generic field 3")
-    private String gf3;
 
-    public RequestAuthorization(String cta1, String banco1, String cta2, String banco2, String codTrx, String extorno, String local, String docum, String impor, String impob, String impoC, String canHq, String moneda, String lunar, String caja, String numtrcj, String hora14, String numneg, String locale, String atmbco, String dbfec, String dbhor, String transactionType, Boolean isReversal, String transactionId, String gf1, String gf2, String gf3) {
+    public RequestAuthorization(String cta1, String banco1, String cta2, String banco2, String codTrx, String extorno, String local, String docum, String impor, String impob, String impoC, String canHq, String moneda, String lunar, String caja, String numtrcj, String hora14, String numneg, String locale, String atmbco, String dbfec, String dbhor, String transactionType, Boolean isReversal, String transactionId, List<Map<String, String>> genericFields) {
         this.cta1 = cta1;
         this.banco1 = banco1;
         this.cta2 = cta2;
@@ -151,9 +147,7 @@ public class RequestAuthorization {
         this.transactionType = transactionType;
         this.isReversal = isReversal;
         this.transactionId = transactionId;
-        this.gf1 = gf1;
-        this.gf2 = gf2;
-        this.gf3 = gf3;
+        this.genericFieldList = genericFields;
     }
 
     public Boolean getReversal() {
@@ -164,29 +158,6 @@ public class RequestAuthorization {
         isReversal = reversal;
     }
 
-    public String getGf1() {
-        return gf1;
-    }
-
-    public void setGf1(String gf1) {
-        this.gf1 = gf1;
-    }
-
-    public String getGf2() {
-        return gf2;
-    }
-
-    public void setGf2(String gf2) {
-        this.gf2 = gf2;
-    }
-
-    public String getGf3() {
-        return gf3;
-    }
-
-    public void setGf3(String gf3) {
-        this.gf3 = gf3;
-    }
 
     public RequestAuthorization() {
     }
@@ -389,6 +360,14 @@ public class RequestAuthorization {
 
     public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
+    }
+
+    public List<Map<String, String>> getGenericFieldList() {
+        return genericFieldList;
+    }
+
+    public void setGenericFieldList(List<Map<String, String>> genericFieldList) {
+        this.genericFieldList = genericFieldList;
     }
 
     @Override

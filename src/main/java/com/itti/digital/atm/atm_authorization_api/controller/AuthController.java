@@ -79,7 +79,7 @@ public class AuthController {
             @Parameter(in = ParameterIn.HEADER, name = "Crypto-Enabled", schema = @Schema(type = "string", allowableValues = {"true", "false"}, defaultValue = "true")),
             @Parameter(in = ParameterIn.HEADER, name = "Ted-Id", schema = @Schema(type = "string"),allowEmptyValue = true,required = false)
     })
-    @PostMapping("/getWebToken")
+    @PostMapping("/v1/getWebToken")
     public ResponseEntity<ResponseGetWebToken> getWebToken(
             @Valid @RequestBody RequestGetWebToken requestGetWebToken,
             @RequestHeader("Ted-Id") String tedId
