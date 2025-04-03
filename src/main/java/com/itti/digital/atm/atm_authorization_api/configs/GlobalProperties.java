@@ -2,6 +2,7 @@ package com.itti.digital.atm.atm_authorization_api.configs;
 
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 /** Bean que obtiene las propiedades del proyecto  *
@@ -34,30 +35,6 @@ public class GlobalProperties {
     private Boolean addMsgAtmResponse;
     @Value("${SET_BALANCE_TO_ZERO_ON_DEPOSIT}")
     private Boolean setBalanceToZeroOnDeposit;
-    @Value("${ACTIVATE_WAIT}")
-    private Boolean activateWait;
-    @Value("${ERROR_RESPONSE}")
-    private Boolean errorResponse;
-    @Value("${DUMMY_MODE}")
-    private Boolean dummyMode;
-    @Value("${DUMMY_ATM_NUMBER}")
-    private String dummyAtmNumber;
-    @Value("${DUMMY_TRX_CODE}")
-    private String dummyTrxCode;
-    @Value("${WAIT_TIME}")
-    private int waitTime;
-    @Value("${BANKITTI_TED_IDS}")
-    private String bankittiTedIds;
-    @Value("${BANKITTI_URL}")
-    private String bankittiUrl;
-    @Value("${BANKITTI_USERNAME}")
-    private String bankittiUsername;
-    @Value("${BANKITTI_PASSWORD}")
-    private String bankittiPassword;
-    @Value("${CANT_INTENTOS}")
-    private Integer cantIntentos;
-    @Value("${atm.transaction.datasource.route}")
-    private Integer atmTransactionDatasourceRoute;
     @Value("${accessToken.validityMiliSeconds}")
     private String accessTokenValidityMiliSeconds;
     @Value("${refreshToken.validityMiliSeconds}")
@@ -80,6 +57,7 @@ public class GlobalProperties {
     private int connTimeout;
     @Value("${readTimeOut}")
     private int readTimeOut;
+
 
     public String getAccessTokenValidityMiliSeconds() {
         return accessTokenValidityMiliSeconds;
@@ -217,102 +195,6 @@ public class GlobalProperties {
         this.setBalanceToZeroOnDeposit = setBalanceToZeroOnDeposit;
     }
 
-    public Boolean getActivateWait() {
-        return activateWait;
-    }
-
-    public void setActivateWait(Boolean activateWait) {
-        this.activateWait = activateWait;
-    }
-
-    public Boolean getErrorResponse() {
-        return errorResponse;
-    }
-
-    public void setErrorResponse(Boolean errorResponse) {
-        this.errorResponse = errorResponse;
-    }
-
-    public Boolean getDummyMode() {
-        return dummyMode;
-    }
-
-    public void setDummyMode(Boolean dummyMode) {
-        this.dummyMode = dummyMode;
-    }
-
-    public String getDummyAtmNumber() {
-        return dummyAtmNumber;
-    }
-
-    public void setDummyAtmNumber(String dummyAtmNumber) {
-        this.dummyAtmNumber = dummyAtmNumber;
-    }
-
-    public String getDummyTrxCode() {
-        return dummyTrxCode;
-    }
-
-    public void setDummyTrxCode(String dummyTrxCode) {
-        this.dummyTrxCode = dummyTrxCode;
-    }
-
-    public int getWaitTime() {
-        return waitTime;
-    }
-
-    public void setWaitTime(int waitTime) {
-        this.waitTime = waitTime;
-    }
-
-    public String getBankittiTedIds() {
-        return bankittiTedIds;
-    }
-
-    public void setBankittiTedIds(String bankittiTedIds) {
-        this.bankittiTedIds = bankittiTedIds;
-    }
-
-    public String getBankittiUrl() {
-        return bankittiUrl;
-    }
-
-    public void setBankittiUrl(String bankittiUrl) {
-        this.bankittiUrl = bankittiUrl;
-    }
-
-    public String getBankittiUsername() {
-        return bankittiUsername;
-    }
-
-    public void setBankittiUsername(String bankittiUsername) {
-        this.bankittiUsername = bankittiUsername;
-    }
-
-    public String getBankittiPassword() {
-        return bankittiPassword;
-    }
-
-    public void setBankittiPassword(String bankittiPassword) {
-        this.bankittiPassword = bankittiPassword;
-    }
-
-    public Integer getCantIntentos() {
-        return cantIntentos;
-    }
-
-    public void setCantIntentos(Integer cantIntentos) {
-        this.cantIntentos = cantIntentos;
-    }
-
-    public Integer getAtmTransactionDatasourceRoute() {
-        return atmTransactionDatasourceRoute;
-    }
-
-    public void setAtmTransactionDatasourceRoute(Integer atmTransactionDatasourceRoute) {
-        this.atmTransactionDatasourceRoute = atmTransactionDatasourceRoute;
-    }
-
     public Boolean getSecurityEnabled() {
         return securityEnabled;
     }
@@ -332,7 +214,6 @@ public class GlobalProperties {
     public int getConnTimeout() {
         return connTimeout;
     }
-
     public void setConnTimeout(int connTimeout) {
         this.connTimeout = connTimeout;
     }
@@ -344,4 +225,5 @@ public class GlobalProperties {
     public void setReadTimeOut(int readTimeOut) {
         this.readTimeOut = readTimeOut;
     }
+
 }

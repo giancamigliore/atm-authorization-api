@@ -28,7 +28,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
 
 public class AuthorizationServiceTest {
-    RestTemplate restTemplate = mock(RestTemplate.class);
+
     AtmAuthorizationRepository repository = mock(AtmAuthorizationRepository.class);
     JdbcTemplate jdbcTemplate = mock(JdbcTemplate.class);
     GlobalProperties gp = mock(GlobalProperties.class);
@@ -36,7 +36,7 @@ public class AuthorizationServiceTest {
     Connection connection = mock(Connection.class);
     CallableStatement cs = mock(CallableStatement.class);
     DataBaseOracle dataBaseOracle = mock(DataBaseOracle.class);
-    AuthorizationService service = new AuthorizationServiceImpl(restTemplate,gp, jdbcTemplate, repository,dataBaseOracle);
+    AuthorizationService service = new AuthorizationServiceImpl(gp, jdbcTemplate, repository,dataBaseOracle);
 
     @AfterEach
     public void cleanup() {

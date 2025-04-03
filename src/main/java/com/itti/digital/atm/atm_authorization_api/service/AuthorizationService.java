@@ -13,4 +13,5 @@ public interface AuthorizationService {
 
 
     ResponseAuthorization processAtmTransaction(RequestAuthorization request) throws AlfaMsException;
+    ResponseAuthorization processAtmTransactionV2(RequestAuthorization request) throws AlfaMsException;
 }

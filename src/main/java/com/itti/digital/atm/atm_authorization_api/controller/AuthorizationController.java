@@ -81,5 +81,50 @@ public class AuthorizationController {
         return ResponseEntity.ok(service.processAtmTransaction(request));
     }
 
+    @Operation(
+            description = "Servicio de obtencion de servicios y cuentas Wepa expuestos para belltech",
+            operationId = "processAtmTransactionV2",
+            responses = {
+                    @ApiResponse(
+                            description = AtmAuthorizationApiApplication.SUCCESS,
+                            responseCode = "200"
+                    ),
+                    @ApiResponse(
+                            description = AtmAuthorizationApiApplication.NO_CONTENT,
+                            responseCode = "204",
+                            content = @Content(schema = @Schema(hidden = true))
+                    ),
+                    @ApiResponse(
+                            description = AtmAuthorizationApiApplication.PARAM_INVALID,
+                            responseCode = "400",
+                            content = @Content(schema = @Schema(hidden = true))
+                    ),
+                    @ApiResponse(
+                            description = AtmAuthorizationApiApplication.BUSINESS_ENTITY_FAILURE,
+                            responseCode = "422",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = ErrorBody.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            description = AtmAuthorizationApiApplication.INTERNAL_SERVER_ERROR,
+                            responseCode = "500",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = ErrorBody.class)
+                            )
+                    )
+            }
+    )
+    @PostMapping("/v2/processAtmTransaction")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @Secured({"ROLE_USER","ROLE_ADMIN"})
+    public ResponseEntity<ResponseAuthorization> processAtmTransactionV2(
+            @Valid @RequestBody RequestAuthorization request
+    )  throws AlfaMsException {
+        return ResponseEntity.ok(service.processAtmTransactionV2(request));
+    }
+
 
 }
