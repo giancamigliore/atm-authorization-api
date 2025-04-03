@@ -23,14 +23,8 @@ public class GlobalProperties {
     private int timeOutProceso;
     @Value("${LONGITUD_MENSAJERIA}")
     private int longitudMensajeria;
-    @Value("${ATM_ROUTE_ACTIVATED}")
-    private Boolean atmRouteActivated;
     @Value("${SHOW_HIKARI_POOL_STATUS}")
     private Boolean showHikariPoolStatus;
-    @Value("${SHOW_REQUEST_FIELDS_LOGS}")
-    private Boolean showRequestFieldsLogs;
-    @Value("${SHOW_RESPONSE_FIELDS_LOGS}")
-    private Boolean showResponseFieldsLogs;
     @Value("${ADD_MSG_ATM_RESPONSE}")
     private Boolean addMsgAtmResponse;
     @Value("${SET_BALANCE_TO_ZERO_ON_DEPOSIT}")
@@ -147,36 +141,12 @@ public class GlobalProperties {
         this.longitudMensajeria = longitudMensajeria;
     }
 
-    public Boolean getAtmRouteActivated() {
-        return atmRouteActivated;
-    }
-
-    public void setAtmRouteActivated(Boolean atmRouteActivated) {
-        this.atmRouteActivated = atmRouteActivated;
-    }
-
     public Boolean getShowHikariPoolStatus() {
         return showHikariPoolStatus;
     }
 
     public void setShowHikariPoolStatus(Boolean showHikariPoolStatus) {
         this.showHikariPoolStatus = showHikariPoolStatus;
-    }
-
-    public Boolean getShowRequestFieldsLogs() {
-        return showRequestFieldsLogs;
-    }
-
-    public void setShowRequestFieldsLogs(Boolean showRequestFieldsLogs) {
-        this.showRequestFieldsLogs = showRequestFieldsLogs;
-    }
-
-    public Boolean getShowResponseFieldsLogs() {
-        return showResponseFieldsLogs;
-    }
-
-    public void setShowResponseFieldsLogs(Boolean showResponseFieldsLogs) {
-        this.showResponseFieldsLogs = showResponseFieldsLogs;
     }
 
     public Boolean getAddMsgAtmResponse() {
