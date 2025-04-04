@@ -344,6 +344,13 @@
 						</configuration>
 					</execution>
 				</executions>
+				<configuration>
+
+					<excludes>
+						<exclude>com/itti/digital/atm/atm_authorization_api/service/dummies/*.class</exclude>
+
+					</excludes>
+				</configuration>
 			</plugin>
 		</plugins>
 		<pluginManagement>

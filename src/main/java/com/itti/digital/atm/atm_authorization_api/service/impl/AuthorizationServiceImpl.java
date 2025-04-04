@@ -97,7 +97,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
                     }
                     if (request.getExtorno().equalsIgnoreCase("99") && codRtrn!=null && !codRtrn.isEmpty() && codRtrn.equalsIgnoreCase("76")) {
                         respuesta = "00" + respuesta.substring(2);
-
+                        codRtrn="00";
                         log.info("RESPONSE RESVERSA PARA TED: " + respuesta);
                     }
 
@@ -108,7 +108,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
                     }
                 }
             } catch (Exception e) {
-                log.error("Error: Problemas con la conexión. Exception: " + e.getMessage());
+                log.error("Error: Problemas al procesar transacción. Exception: " + e.getMessage());
                 if(errorCode!=null && !errorCode.equalsIgnoreCase("") && errorCode.contains("ORA-01013")) {
                     return  ModelUtils.parseResponse(respuesta,gp.getLongitudMensajeria(),request,ErrorConstants.ERROR_CODE_DATABASE_TIMEOUT,ErrorConstants.ERROR_MESSAGE_DATABASE_TIMEOUT,gp.getSetBalanceToZeroOnDeposit(),gp.getAddMsgAtmResponse()) ;
 
@@ -163,6 +163,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 
                 if (request.getExtorno().equalsIgnoreCase("99") && codRtrn!=null && !codRtrn.isEmpty() && codRtrn.equalsIgnoreCase("76")) {
                     respuesta = "00" + respuesta.substring(2);
+                    codRtrn ="00";
                     log.info("RESPONSE RESVERSA PARA TED: " + respuesta);
                 }
 
@@ -173,7 +174,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
                 }
             }
         } catch (Exception e) {
-            log.error("Error: Problemas con la conexión. Exception: " + e.getMessage());
+            log.error("Error: Problemas al procesar transacción. Exception: " + e.getMessage());
             if(errorCode!=null && !errorCode.equalsIgnoreCase("") && errorCode.contains("ORA-01013")) {
                 return  ModelUtils.parseResponse(respuesta,gp.getLongitudMensajeria(),request,ErrorConstants.ERROR_CODE_DATABASE_TIMEOUT,ErrorConstants.ERROR_MESSAGE_DATABASE_TIMEOUT,gp.getSetBalanceToZeroOnDeposit(),gp.getAddMsgAtmResponse()) ;
             }
